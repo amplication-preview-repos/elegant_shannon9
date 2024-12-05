@@ -25,6 +25,18 @@ import { TrainingDataList } from "./trainingData/TrainingDataList";
 import { TrainingDataCreate } from "./trainingData/TrainingDataCreate";
 import { TrainingDataEdit } from "./trainingData/TrainingDataEdit";
 import { TrainingDataShow } from "./trainingData/TrainingDataShow";
+import { GenerationHistoryList } from "./generationHistory/GenerationHistoryList";
+import { GenerationHistoryCreate } from "./generationHistory/GenerationHistoryCreate";
+import { GenerationHistoryEdit } from "./generationHistory/GenerationHistoryEdit";
+import { GenerationHistoryShow } from "./generationHistory/GenerationHistoryShow";
+import { ModelTrainingSessionList } from "./modelTrainingSession/ModelTrainingSessionList";
+import { ModelTrainingSessionCreate } from "./modelTrainingSession/ModelTrainingSessionCreate";
+import { ModelTrainingSessionEdit } from "./modelTrainingSession/ModelTrainingSessionEdit";
+import { ModelTrainingSessionShow } from "./modelTrainingSession/ModelTrainingSessionShow";
+import { AudioTrackList } from "./audioTrack/AudioTrackList";
+import { AudioTrackCreate } from "./audioTrack/AudioTrackCreate";
+import { AudioTrackEdit } from "./audioTrack/AudioTrackEdit";
+import { AudioTrackShow } from "./audioTrack/AudioTrackShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -72,6 +84,27 @@ const App = (): React.ReactElement => {
           edit={TrainingDataEdit}
           create={TrainingDataCreate}
           show={TrainingDataShow}
+        />
+        <Resource
+          name="GenerationHistory"
+          list={GenerationHistoryList}
+          edit={GenerationHistoryEdit}
+          create={GenerationHistoryCreate}
+          show={GenerationHistoryShow}
+        />
+        <Resource
+          name="ModelTrainingSession"
+          list={ModelTrainingSessionList}
+          edit={ModelTrainingSessionEdit}
+          create={ModelTrainingSessionCreate}
+          show={ModelTrainingSessionShow}
+        />
+        <Resource
+          name="AudioTrack"
+          list={AudioTrackList}
+          edit={AudioTrackEdit}
+          create={AudioTrackCreate}
+          show={AudioTrackShow}
         />
       </Admin>
     </div>

@@ -59,3 +59,39 @@ model TrainingData {
   id        String   @id @default(cuid())
   updatedAt DateTime @updatedAt
 }
+
+model GenerationHistory {
+  createdAt       DateTime @default(now())
+  id              String   @id @default(cuid())
+  parameters      Json?
+  prompt          String?
+  resultAudioPath String?
+  updatedAt       DateTime @updatedAt
+}
+
+model ModelTrainingSession {
+  createdAt   DateTime                        @default(now())
+  datasetName String?
+  id          String                          @id @default(cuid())
+  progress    Int?
+  status      EnumModelTrainingSessionStatus?
+  updatedAt   DateTime                        @updatedAt
+}
+
+model AudioTrack {
+  createdAt DateTime              @default(now())
+  duration  Int?
+  filePath  String?
+  format    EnumAudioTrackFormat?
+  id        String                @id @default(cuid())
+  title     String?
+  updatedAt DateTime              @updatedAt
+}
+
+enum EnumModelTrainingSessionStatus {
+  Option1
+}
+
+enum EnumAudioTrackFormat {
+  Option1
+}

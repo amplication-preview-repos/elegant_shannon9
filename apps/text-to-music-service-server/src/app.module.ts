@@ -4,6 +4,9 @@ import { AppUserModule } from "./appUser/appUser.module";
 import { PromptModule } from "./prompt/prompt.module";
 import { MusicTrackModule } from "./musicTrack/musicTrack.module";
 import { TrainingDataModule } from "./trainingData/trainingData.module";
+import { GenerationHistoryModule } from "./generationHistory/generationHistory.module";
+import { ModelTrainingSessionModule } from "./modelTrainingSession/modelTrainingSession.module";
+import { AudioTrackModule } from "./audioTrack/audioTrack.module";
 import { HealthModule } from "./health/health.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
@@ -28,6 +31,9 @@ import { AuthModule } from "./auth/auth.module";
     PromptModule,
     MusicTrackModule,
     TrainingDataModule,
+    GenerationHistoryModule,
+    ModelTrainingSessionModule,
+    AudioTrackModule,
     HealthModule,
     PrismaModule,
     SecretsManagerModule,
