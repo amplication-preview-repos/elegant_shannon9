@@ -1,0 +1,97 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  createdAt DateTime @default(now())
+  email     String?  @unique
+  firstName String?
+  id        String   @id @default(cuid())
+  lastName  String?
+  password  String
+  roles     Json
+  updatedAt DateTime @updatedAt
+  username  String   @unique
+}
+
+model AppUser {
+  createdAt         DateTime       @default(now())
+  email             String?
+  id                String         @id @default(cuid())
+  password          String?
+  prompts           Prompt[]
+  trainingDataItems TrainingData[]
+  updatedAt         DateTime       @updatedAt
+  username          String?
+}
+
+model Prompt {
+  appUser     AppUser?     @relation(fields: [appUserId], references: [id])
+  appUserId   String?
+  content     String?
+  createdAt   DateTime     @default(now())
+  id          String       @id @default(cuid())
+  musicTracks MusicTrack[]
+  updatedAt   DateTime     @updatedAt
+}
+
+model MusicTrack {
+  createdAt DateTime @default(now())
+  fileUrl   String?
+  id        String   @id @default(cuid())
+  prompt    Prompt?  @relation(fields: [promptId], references: [id])
+  promptId  String?
+  title     String?
+  updatedAt DateTime @updatedAt
+}
+
+model TrainingData {
+  appUser   AppUser? @relation(fields: [appUserId], references: [id])
+  appUserId String?
+  createdAt DateTime @default(now())
+  fileName  String?
+  fileUrl   String?
+  id        String   @id @default(cuid())
+  updatedAt DateTime @updatedAt
+}
+
+model GenerationHistory {
+  createdAt       DateTime @default(now())
+  id              String   @id @default(cuid())
+  parameters      Json?
+  prompt          String?
+  resultAudioPath String?
+  updatedAt       DateTime @updatedAt
+}
+
+model ModelTrainingSession {
+  createdAt   DateTime                        @default(now())
+  datasetName String?
+  id          String                          @id @default(cuid())
+  progress    Int?
+  status      EnumModelTrainingSessionStatus?
+  updatedAt   DateTime                        @updatedAt
+}
+
+model AudioTrack {
+  createdAt DateTime              @default(now())
+  duration  Int?
+  filePath  String?
+  format    EnumAudioTrackFormat?
+  id        String                @id @default(cuid())
+  title     String?
+  updatedAt DateTime              @updatedAt
+}
+
+enum EnumModelTrainingSessionStatus {
+  Option1
+}
+
+enum EnumAudioTrackFormat {
+  Option1
+}
